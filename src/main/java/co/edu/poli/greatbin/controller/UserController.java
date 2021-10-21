@@ -86,7 +86,7 @@ public class UserController {
         }
     }
     
-    // Validar metodo DELETE
+    
     @DeleteMapping("/users/{id}")
     public String deleteUserById(@PathVariable("id") long id){
         boolean exists = userRepository.existsUserByDocumentId(id);
