@@ -10,6 +10,8 @@ public interface UserRepository extends JpaRepository<User, String>{
     User findByDocumentId(long id);
         
     boolean existsUserByDocumentId(long id);
+    
+    void deleteByDocumentId(long id);
 
     
 }
