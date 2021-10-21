@@ -1,0 +1,16 @@
+version: '3.3'
+services:
+  db:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'great_bin'
+      MYSQL_USER: 'db_app_user'
+      MYSQL_PASSWORD: 'mySuperSecretWeb'
+      MYSQL_ROOT_PASSWORD: 'RootSuperSecret123'
+    ports:
+      - '3306:3306'
+    volumes:
+      - great-bin:/var/lib/mysql
+volumes:
+  great-bin:

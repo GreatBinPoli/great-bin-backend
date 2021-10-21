@@ -1,0 +1,15 @@
+{
+    "active": false,
+    "document_type": 1,
+    "document_id": 123456789,
+    "first_name": "Nicolas",
+    "last_name": "Pinzon",
+    "email": "nicolas@pinzon.com",
+    "password": "1234567890",
+    "roles": "ADMIN",
+    "phone_number": 3111245323,
+    "address": "Carrera mi casa",
+    "neighbourhood": "Engativa",
+    "bags": [],
+    "sms": {}
+}
