@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import co.edu.poli.greatbin.model.User;
 import co.edu.poli.greatbin.repository.UserRepository;
+import io.swagger.annotations.Api;
 
+@Api(tags = {"Class: UserController"})
 @Transactional
 @RestController
 @RequestMapping("/api/v1")
