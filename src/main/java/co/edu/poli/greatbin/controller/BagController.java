@@ -5,10 +5,14 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.edu.poli.greatbin.model.Bag;
@@ -52,6 +56,23 @@ public class BagController {
 		bagRepository.saveAll(newBags);		
 		return newBags;
 		
+	}
+	
+	@GetMapping("/users/{id}/bags")
+    @ResponseBody
+    public List<Bag> getBagsByUser(@PathVariable("id") long id) {
+		User user = userRepository.findByDocumentId(id);
+		return bagRepository.findByUser(user);
+    }
+	
+	@PutMapping("/users/{id_user}/bags/{id_bag}")
+	public String updateBagById(@PathVariable("id_user") long idUser, @PathVariable("id_bag") Integer idBag) {
+		return null;
+	}
+	
+	@DeleteMapping("/users/{idUser}/bags/{idBag}")
+	public String deleteBagById(@PathVariable("id_user") long idUser, @PathVariable("id_bag") Integer idBag) {
+		return null;
 	}
 	
 	
