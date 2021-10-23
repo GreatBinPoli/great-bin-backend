@@ -21,20 +21,20 @@ public class SwaggerConfig {
 	public Docket customerApi() {
 		return new Docket(DocumentationType.SWAGGER_2)
 				.select()
-				//.apis(RequestHandlerSelectors.basePackage("co.edu.poli.mongodb.controller")) //Specific package
+				//.apis(RequestHandlerSelectors.basePackage("co.edu.poli.greatbin.controller")) //Specific package
 				.apis(RequestHandlerSelectors.basePackage("co.edu.poli")) //All project
 				//.paths(PathSelectors.regex("/api/v1.*")) //filter RequestMapping with regular expression
 				.paths(PathSelectors.any())
 				.build()
-				.apiInfo(mongoCustomerApiInfo())
-				.tags(new Tag("Class: CustomerController", "*** Customer Controller ***"));
+				.apiInfo(greatApiInfo());
+				//.tags(new Tag("Class: Controller", "*** Customer Controller ***"));
 	}
 
-	private ApiInfo mongoCustomerApiInfo() {
+	private ApiInfo greatApiInfo() {
 		return new ApiInfoBuilder()
 				.title("My Spring Boot REST API")
-				.description("Customer REST API")
-				.contact(new Contact("Web great ", "", "jmarmela@poligran.edu.co"))
+				.description(" REST API")
+				.contact(new Contact("Web great ", "", "jmarmela@poligran.edu.co,cfesanchez@poligran.edu.co,anipinzon@poligran.edu.co"))
 				.version("0.0.1")
 				.build();
 	}

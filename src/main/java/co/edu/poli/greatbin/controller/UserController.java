@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 import co.edu.poli.greatbin.model.User;
 import co.edu.poli.greatbin.repository.UserRepository;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 
 @Api(tags = {"Class: UserController"})
 @Transactional
@@ -25,6 +28,7 @@ import io.swagger.annotations.Api;
 public class UserController {
 
     @Autowired
+    
     private UserRepository userRepository;    
 
     public UserController() {
@@ -48,6 +52,8 @@ public class UserController {
     }
 
     @GetMapping("/users/all")
+    @ApiOperation(value = "*** Service Method Get All User ***", notes = "*** Get All User from great\\\\WebApp ***")
+	@ApiResponses(value = {@ApiResponse(code = 404, message = "*** Error Get All User!!! ***")})
     @ResponseBody
     public List<User> getUsersList() {
         return userRepository.findAll();
