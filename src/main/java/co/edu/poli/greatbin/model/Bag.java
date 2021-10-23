@@ -36,6 +36,10 @@ public class Bag {
     @OneToMany(mappedBy = "bag", cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Waste> wastes;
+    
+    public Bag() {
+    	
+    }
 
     public Bag(Integer id_bag, BagType type, User user, List<Waste> wastes) {
         this.id_bag = id_bag;
