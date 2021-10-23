@@ -1,5 +1,5 @@
 package co.edu.poli.greatbin.model;
 
 public enum BagType {
-    GREEN, WHITE, BLACK;
+    GREEN, WHITE, BLACK, RED;
 }

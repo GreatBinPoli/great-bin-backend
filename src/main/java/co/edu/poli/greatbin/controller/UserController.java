@@ -27,8 +27,7 @@ import io.swagger.annotations.ApiResponses;
 @RequestMapping("/api/v1")
 public class UserController {
 
-    @Autowired
-    
+    @Autowired    
     private UserRepository userRepository;    
 
     public UserController() {
