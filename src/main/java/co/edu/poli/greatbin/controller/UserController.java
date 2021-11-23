@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,90 +22,95 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
-@Api(tags = {"Class: UserController"})
+@Api(tags = { "Class: UserController" })
 @Transactional
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/v1")
 public class UserController {
 
-    @Autowired    
-    private UserRepository userRepository;    
+	@Autowired
+	private UserRepository userRepository;
 
-    public UserController() {
-    }
+	public UserController() {
+	}
 
-    @PostMapping("/user")
-    public User postUser(@RequestBody User newUser) {
-        boolean exists = userRepository.existsUserByDocumentId(newUser.getDocumentId());
-        if (exists) {
-            return null;
-        } else {
-            userRepository.save(newUser);
-            return newUser;
-        }        
-    }
+	@PostMapping("/users")
+	public User postUser(@RequestBody User newUser) {
+		boolean exists = userRepository.existsUserByDocumentId(newUser.getDocumentId());
+		if (exists) {
+			return null;
+		} else {
+			userRepository.save(newUser);
+			return newUser;
+		}
+	}
 
-    @PostMapping("/users")
-    public String postUser(@RequestBody List<User> newusers) {
-        userRepository.saveAll(newusers);
-        return "Users successfully saved!";      
-    }
+	@PostMapping("/userslist")
+	public String postUser(@RequestBody List<User> newusers) {
+		userRepository.saveAll(newusers);
+		return "Users successfully saved!";
+	}
 
-    @GetMapping("/users/all")
-    @ApiOperation(value = "*** Service Method Get All User ***", notes = "*** Get All User from great\\\\WebApp ***")
-	@ApiResponses(value = {@ApiResponse(code = 404, message = "*** Error Get All User!!! ***")})
-    @ResponseBody
-    public List<User> getUsersList() {
-        return userRepository.findAll();
-    }
+	@GetMapping("/users/all")
+	@ApiOperation(value = "*** Service Method Get All User ***", notes = "*** Get All User from great\\\\WebApp ***")
+	@ApiResponses(value = { @ApiResponse(code = 404, message = "*** Error Get All User!!! ***") })
+	@ResponseBody
+	public List<User> getUsersList() {
+		return userRepository.findAll();
+	}
 
-    @GetMapping("/users/{id}")
-    @ResponseBody
-    public User getUsersById(@PathVariable("id") long id) {
-        boolean exists = userRepository.existsUserByDocumentId(id);
-        if (exists) {
-            return userRepository.findByDocumentId(id);
-        } else {
-            return null;
-        }                       
-    }
-    
-    @PutMapping("/users/{id}")
-    @ResponseBody
-    public User updateUserById(@PathVariable("id") long id, @RequestBody User user) {
-        boolean exists = userRepository.existsUserByDocumentId(id);
-        if (exists) {
-        	User savedUser = userRepository.findByDocumentId(id);
-        	savedUser.setDocumentType(user.getDocumentType());
-        	savedUser.setFirstName(user.getFirstName());
-        	savedUser.setLastName(user.getLastName());
-        	savedUser.setEmail(user.getEmail());
-        	savedUser.setPassword(user.getPassword());
-        	savedUser.setRoles(user.getRoles());
-        	savedUser.setPhoneNumber(user.getPhoneNumber());
-        	savedUser.setAddress(user.getAddress());
-        	savedUser.setNeighbourhood(user.getNeighbourhood());
-        	savedUser.setBags(user.getBags());
-        	savedUser.setSms(user.getSms());
-        	userRepository.save(savedUser);
-        	return savedUser;
-        } else {
-        	return null;
-        }
-    }
-    
-    
-    @DeleteMapping("/users/{id}")
-    public String deleteUserById(@PathVariable("id") long id){
-        boolean exists = userRepository.existsUserByDocumentId(id);
-        if (exists) {
-        	userRepository.deleteByDocumentId(id);
-            return "User successfully deleted";
-        }
-        return "User with the code " + id + " not found.";
-    }
-    
-    
-    
+	@GetMapping("/users/uno/{id}")
+	@ResponseBody
+	public User getUsersById(@PathVariable("id") long id) {
+		boolean exists = userRepository.existsUserByDocumentId(id);
+		if (exists) {
+			return userRepository.findByDocumentId(id);
+		} else {
+			return null;
+		}
+	}
+
+	@GetMapping("/users/email/{email}")
+	@ResponseBody
+	public User getUsersByEmail(@PathVariable("email") String email) {
+
+		return userRepository.findByEmail(email);
+
+	}
+
+	@PutMapping("/users/update/{id}")
+	@ResponseBody
+	public User updateUserById(@PathVariable("id") long id, @RequestBody User user) {
+		boolean exists = userRepository.existsUserByDocumentId(id);
+		if (exists) {
+			User savedUser = userRepository.findByDocumentId(id);
+			savedUser.setDocumentType(user.getDocumentType());
+			savedUser.setFirstName(user.getFirstName());
+			savedUser.setLastName(user.getLastName());
+			savedUser.setEmail(user.getEmail());
+			savedUser.setPassword(user.getPassword());
+			savedUser.setRoles(user.getRoles());
+			savedUser.setPhoneNumber(user.getPhoneNumber());
+			savedUser.setAddress(user.getAddress());
+			savedUser.setNeighbourhood(user.getNeighbourhood());
+			savedUser.setBags(user.getBags());
+			savedUser.setSms(user.getSms());
+			userRepository.save(savedUser);
+			return savedUser;
+		} else {
+			return null;
+		}
+	}
+
+	@DeleteMapping("/users/delete/{id}")
+	public String deleteUserById(@PathVariable("id") long id) {
+		boolean exists = userRepository.existsUserByDocumentId(id);
+		if (exists) {
+			userRepository.deleteByDocumentId(id);
+			return "User successfully deleted";
+		}
+		return "User with the code " + id + " not found.";
+	}
+
 }
-

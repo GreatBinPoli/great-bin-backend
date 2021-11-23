@@ -28,11 +28,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.cors().and().csrf().disable() // Cross-Site Request Forgery (falsificación de petición en sitios cruzados)
-				.authorizeRequests().antMatchers("/api/v1/users/all").hasAnyRole("ADMIN", "USER")
-				.antMatchers("/api/v1/users/**").hasRole("ADMIN")
-				.anyRequest().authenticated()
-				.and()
-				.formLogin()// authentication method
+				.authorizeRequests().antMatchers("/api/v1/users/all").hasAnyRole("ADMIN").antMatchers("/api/v1/users")
+				.permitAll().antMatchers("/api/v1/users/uno").hasAnyRole("ADMIN", "USER")
+				.antMatchers("/api/v1/users/email").hasAnyRole("ADMIN", "USER").antMatchers("/api/v1/users/update")
+				.hasAnyRole("ADMIN", "USER").antMatchers("/api/v1/users/delete").hasAnyRole("ADMIN").anyRequest()
+				.authenticated().and().formLogin()// authentication method
 				.and().httpBasic() // authentication method (allow test postman POST,DELETE,PUT)
 				.and().logout();// http://localhost:8080/login?logout
 	}
