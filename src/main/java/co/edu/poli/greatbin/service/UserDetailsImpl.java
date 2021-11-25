@@ -9,7 +9,11 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import co.edu.poli.greatbin.model.User;
-
+/**
+ *  Servicio de autenticacion del usuario 
+ * @author Cristian Sanchez
+ *
+ */
 public class UserDetailsImpl implements UserDetails {
 	private static final long serialVersionUID = -6855979919718350058L;
 

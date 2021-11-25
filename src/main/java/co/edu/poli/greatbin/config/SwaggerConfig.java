@@ -12,7 +12,11 @@ import springfox.documentation.service.Tag;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
-
+/**
+ * Configuracion e Swagger 
+ * @author Johnny Masmela 
+ *
+ */
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig {

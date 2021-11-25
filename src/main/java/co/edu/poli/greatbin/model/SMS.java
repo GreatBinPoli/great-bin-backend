@@ -12,7 +12,11 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
+/**
+ * Modulo para el envio de mensajes de SMS 
+ * @author Johnny Masmela 
+ *
+ */
 @Entity
 @Table(name = "tab_sms")
 public class SMS {
@@ -41,34 +45,76 @@ public class SMS {
     public SMS() {
     }
 
-    public Integer getId() {
+    /**
+     * Crear un registro de envio de SMS 
+     * @param id
+     * @param message
+     * @param phoneNumber
+     * @param user
+     * @param body
+     */
+    public SMS(Integer id, Message message, String phoneNumber, User user, String body) {
+		super();
+		this.id = id;
+		this.message = message;
+		this.phoneNumber = phoneNumber;
+		this.user = user;
+		this.body = body;
+	}
+
+    /**
+     * Get del Id De SMS
+     * @return
+     */
+	public Integer getId() {
         return id;
     }
-
+	 /**
+	  * Set del Id De SMS
+	  * @param id
+	  */
     public void setId(Integer id) {
         this.id = id;
     }
-
+    /**
+     * Get mensaje del SMS
+     * @return
+     */
     public Message getMessage() {
         return message;
     }
-
+    /**
+     * Set mensaje del SMS
+     * @param message
+     */
     public void setMessage(Message message) {
         this.message = message;
     }
-
+    /**
+     * Get Numero Celular del SMS
+     * @return
+     */
     public String getPhoneNumber() {
         return phoneNumber;
     }
-
+    /**
+     * Set Del Numero de celular del SMS
+     * @param phoneNumber
+     */
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
-
+    /**
+     * Get Del dato del Usuario para el SMS
+     * @return
+     */
     public User getUser() {
         return user;
     }
-
+    /**
+     * Set del dato del usuario para el SMS
+     * @param user
+     */
     public void setUser(User user) {
         this.user = user;
     }

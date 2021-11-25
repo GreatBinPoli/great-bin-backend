@@ -8,6 +8,11 @@ import org.springframework.stereotype.Service;
 
 import co.edu.poli.greatbin.repository.UserRepository;
 import co.edu.poli.greatbin.model.User;
+/**
+ * Servicio para autenticar el usuario 
+ * @author Cristian Sanchez
+ *
+ */
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 	@Autowired

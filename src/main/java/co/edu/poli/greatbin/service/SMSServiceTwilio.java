@@ -6,7 +6,11 @@ import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 
 import co.edu.poli.greatbin.model.*;
-
+/**
+ * Servicoo de conexion para SMS con TWILIO
+ * @author Johnny Masmela 
+ *
+ */
 @Service
 public class SMSServiceTwilio implements SMSService{
 	
