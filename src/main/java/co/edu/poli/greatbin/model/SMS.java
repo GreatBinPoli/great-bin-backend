@@ -34,6 +34,9 @@ public class SMS {
     @JoinColumn(name = "user_id")
     @JsonManagedReference
     private User user;
+    
+    //Prueba 
+    private String body;
 
     public SMS() {
     }
@@ -69,8 +72,18 @@ public class SMS {
     public void setUser(User user) {
         this.user = user;
     }
+    
+    
 
-    @Override
+    public String getBody() {
+		return body;
+	}
+
+	public void setBody(String body) {
+		this.body = body;
+	}
+
+	@Override
     public String toString() {
         return "SMS [id=" + id + ", message=" + message + ", phoneNumber=" + phoneNumber + ", user=" + user + "]";
     }
