@@ -11,8 +11,10 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
 /**
  * Configuracion de seguridad por Usuario
+ * 
  * @author Cristian Sanchez
  *
  */
@@ -35,8 +37,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.authorizeRequests().antMatchers("/api/v1/users/all").hasAnyRole("ADMIN").antMatchers("/api/v1/users")
 				.permitAll().antMatchers("/api/v1/users/uno").hasAnyRole("ADMIN", "USER")
 				.antMatchers("/api/v1/users/email").hasAnyRole("ADMIN", "USER").antMatchers("/api/v1/users/update")
-				.hasAnyRole("ADMIN", "USER").antMatchers("/api/v1/users/delete").hasAnyRole("ADMIN").anyRequest()
-				.authenticated().and().formLogin()// authentication method
+				.hasAnyRole("ADMIN", "USER").antMatchers("/api/v1/users/delete").hasAnyRole("ADMIN")
+				.antMatchers("/api/v1/users/bag").hasAnyRole("ADMIN", "USER")
+				.antMatchers("/api/v1/users/bags").hasAnyRole("ADMIN", "USER")
+				.anyRequest().authenticated().and()
+				.formLogin()// authentication method
 				.and().httpBasic() // authentication method (allow test postman POST,DELETE,PUT)
 				.and().logout();// http://localhost:8080/login?logout
 	}
