@@ -20,6 +20,7 @@ import co.edu.poli.greatbin.model.User;
 import co.edu.poli.greatbin.repository.BagRepository;
 import co.edu.poli.greatbin.repository.UserRepository;
 import io.swagger.annotations.Api;
+
 /**
  * 
  * @author Nicolás Pinzón
@@ -40,12 +41,14 @@ public class BagController {
 	public BagController() {
 
 	}
-    /**
-     * Insertar una Basura 
-     * @param id
-     * @param newBag
-     * @return
-     */
+
+	/**
+	 * Insertar una Basura
+	 * 
+	 * @param id
+	 * @param newBag
+	 * @return
+	 */
 	@PostMapping("/users/{id}/bag")
 	public Bag postBagByUserId(@PathVariable("id") long id, @RequestBody Bag newBag) {
 		boolean exists = userRepository.existsUserByDocumentId(id);
@@ -59,12 +62,14 @@ public class BagController {
 		}
 
 	}
-    /**
-     * Insertar Basuras 
-     * @param id
-     * @param newBags
-     * @return
-     */
+
+	/**
+	 * Insertar Basuras
+	 * 
+	 * @param id
+	 * @param newBags
+	 * @return
+	 */
 	@PostMapping("/users/{id}/bags")
 	public List<Bag> postBagListByUserId(@PathVariable("id") long id, @RequestBody List<Bag> newBags) {
 		User user = userRepository.findByDocumentId(id);
@@ -76,9 +81,10 @@ public class BagController {
 		return newBags;
 
 	}
-    
+
 	/**
-	 * Listar basuras 
+	 * Listar basuras
+	 * 
 	 * @param id
 	 * @return
 	 */
@@ -93,22 +99,29 @@ public class BagController {
 			return null;
 		}
 	}
-    /**
-     * Editar basuras por id 
-     * @param idUser
-     * @param idBag
-     * @return
-     */
+
+	/**
+	 * Editar basuras por id
+	 * 
+	 * @param idUser
+	 * @param idBag
+	 * @return
+	 */
 	@PutMapping("/users/{id_user}/bags/{id_bag}")
-	public String updateBagById(@PathVariable("id_user") long idUser, @PathVariable("id_bag") Integer idBag) {
+	public String updateBagById(@PathVariable("id_user") long idUser, @PathVariable("id_bag") Integer idBag,
+								@RequestBody Bag bag) {		
+		Bag _bag = bagRepository.findById(idBag).get();
+		_bag.setType(bag.getType());
 		return null;
 	}
-    /**
-     * Eliminar basuras por id 
-     * @param idUser
-     * @param idBag
-     * @return
-     */
+
+	/**
+	 * Eliminar basuras por id
+	 * 
+	 * @param idUser
+	 * @param idBag
+	 * @return
+	 */
 	@DeleteMapping("/users/{id_user}/bags/{idBag}")
 	public String deleteBagById(@PathVariable("id_user") long idUser, @PathVariable("id_bag") Integer idBag) {
 		return null;

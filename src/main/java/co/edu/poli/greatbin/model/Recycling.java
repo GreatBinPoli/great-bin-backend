@@ -31,6 +31,11 @@ public class Recycling {
      * @param isRecycling
      * @param waste
      */
+    
+    public Recycling() {
+    	
+    }
+    
     public Recycling(Integer code, boolean isRecycling, Waste waste) {
         this.code = code;
         this.isRecycling = isRecycling;

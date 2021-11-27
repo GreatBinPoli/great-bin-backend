@@ -38,6 +38,10 @@ public class Waste {
     @JoinColumn(name = "recycling_code")
     @JsonManagedReference
     private Recycling recycling;
+    
+    public Waste() {
+    	
+    }
 
     /**
      * Crea una Desperdicio para agregar a la basura con los siguientes paremetros 
