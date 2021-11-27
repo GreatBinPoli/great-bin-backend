@@ -32,6 +32,7 @@ import io.swagger.annotations.Api;
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/v1")
+@CrossOrigin(origins = "*")
 public class BagController {
 
 	@Autowired
@@ -110,7 +111,10 @@ public class BagController {
 	 * @return
 	 */
 	@PutMapping("/users/{id_user}/bags/{id_bag}")
-	public String updateBagById(@PathVariable("id_user") long idUser, @PathVariable("id_bag") Integer idBag) {
+	public String updateBagById(@PathVariable("id_user") long idUser, @PathVariable("id_bag") Integer idBag,
+								@RequestBody Bag bag) {		
+		Bag _bag = bagRepository.findById(idBag).get();
+		_bag.setType(bag.getType());
 		return null;
 	}
 
