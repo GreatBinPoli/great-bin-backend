@@ -37,7 +37,7 @@ public class Waste {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "recycling_code")
     @JsonManagedReference
-    private Recycling recycling;
+    private Recycling Recycling;
     
     public Waste() {
     	
@@ -56,7 +56,7 @@ public class Waste {
         this.name = name;
         this.description = description;
         this.bag = bag;
-        this.recycling = recycling;
+        this.Recycling = recycling;
     }
 
     /**
@@ -120,20 +120,20 @@ public class Waste {
      * @return
      */
     public Recycling getRecycling() {
-        return recycling;
+        return Recycling;
     }
     /**
      * Set de reciclable del desperdicio 
      * @param recycling
      */
     public void setRecycling(Recycling recycling) {
-        this.recycling = recycling;
+        this.Recycling = recycling;
     }
 
     @Override
     public String toString() {
         return "Waste [bag=" + bag + ", description=" + description + ", idWaste=" + idWaste + ", name=" + name
-                + ", recycling=" + recycling + "]";
+                + ", recycling=" + Recycling + "]";
     }
     
 }

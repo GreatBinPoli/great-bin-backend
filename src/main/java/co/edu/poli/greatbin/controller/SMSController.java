@@ -10,14 +10,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.twilio.rest.api.v2010.account.Message;
 
-
 import co.edu.poli.greatbin.model.SMS;
 import co.edu.poli.greatbin.service.SMSService;
 import io.swagger.annotations.Api;
 
 /**
  * Controlador de SMS
- * @author Johnny Masmela 
+ * 
+ * @author Johnny Masmela
  *
  */
 @Api(tags = { "Class: SMSController" })
@@ -29,12 +29,14 @@ public class SMSController {
 
 	@Autowired
 	private SMSService smsService;
-    /**
-     * Insertar un SMS 
-     * @param sms
-     * @return
-     */
-	@PostMapping("/api/v1/SMS")
+
+	/**
+	 * Insertar un SMS
+	 * 
+	 * @param sms
+	 * @return
+	 */
+	@PostMapping("/users/sms")
 	public Message sendSMS(@RequestBody SMS sms) {
 		return smsService.sendSMS(sms);
 	}

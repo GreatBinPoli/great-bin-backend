@@ -22,7 +22,7 @@ public class Recycling {
 
     private boolean isRecycling;
 
-    @OneToOne(mappedBy = "recycling", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "Recycling", cascade = CascadeType.ALL)
     @JsonBackReference
     private Waste waste;
     /**

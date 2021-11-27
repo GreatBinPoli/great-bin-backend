@@ -25,24 +25,24 @@ import io.swagger.annotations.Api;
  * @author Nicolás Pinzón
  *
  */
-@Api(tags = { "Class: WasteController" })
+@Api(tags = { "Class: UserController" })
 @Transactional
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/v1")
-@CrossOrigin(origins = "*")
 public class WasteController {
-	
+
 	@Autowired
 	private BagRepository bagRepository;
 	@Autowired
 	private UserRepository userRepository;
 	@Autowired
 	private WasteRepository wasteRepository;
-	
+
 	public WasteController() {
-		
+
 	}
-	
+
 	/**
 	 * Insertar un desperdicio en una basura
 	 * 
@@ -51,29 +51,28 @@ public class WasteController {
 	 * @param newWaste
 	 * @return
 	 */
-	@PostMapping("/users/{id_user}/bag/{id_bag}/wastes")
-	public Waste postWasteByIdBag(@PathVariable("id_user") long id_user, 
-			@PathVariable("id_bag") Integer id_bag,
+	@PostMapping("/users/{id_user}/bag/{id_bag}/wastes/all")
+	public Waste postWasteByIdBag(@PathVariable("id_user") long id_user, @PathVariable("id_bag") Integer id_bag,
 			@RequestBody Waste newWaste) {
 		boolean exists = userRepository.existsUserByDocumentId(id_user);
 		if (exists) {
-			//User user = userRepository.findByDocumentId(id_user);
+			// User user = userRepository.findByDocumentId(id_user);
 			Bag bag = bagRepository.findById(id_bag).get();
 			newWaste.setBag(bag);
-			wasteRepository.save(newWaste);			
+			wasteRepository.save(newWaste);
 			return newWaste;
 		} else {
 			return null;
 		}
 
 	}
-	
+
 	@GetMapping("/users/{id_user}/bag/{id_bag}/wastes")
 	@ResponseBody
 	public List<Waste> getBagsByUser(@PathVariable("id_user") long id_user, @PathVariable("id_bag") Integer id_bag) {
 		boolean exists_user = userRepository.existsUserByDocumentId(id_user);
 		boolean exists_bag = bagRepository.existsById(id_bag);
-		if (exists_user && exists_bag ) {
+		if (exists_user && exists_bag) {
 			Bag bag = bagRepository.findById(id_bag).get();
 			return wasteRepository.findByBag(bag);
 		} else {

@@ -38,8 +38,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.permitAll().antMatchers("/api/v1/users/uno").hasAnyRole("ADMIN", "USER")
 				.antMatchers("/api/v1/users/email").hasAnyRole("ADMIN", "USER").antMatchers("/api/v1/users/update")
 				.hasAnyRole("ADMIN", "USER").antMatchers("/api/v1/users/delete").hasAnyRole("ADMIN")
-				.antMatchers("/api/v1/users/bag").hasAnyRole("ADMIN", "USER")
-				.antMatchers("/api/v1/users/bags").hasAnyRole("ADMIN", "USER")
+				.antMatchers("/api/v1/users/bag").hasAnyRole("ADMIN", "USER").antMatchers("/api/v1/users/bags")
+				.hasAnyRole("ADMIN", "USER").antMatchers("/api/v1/users/sms").hasAnyRole("ADMIN", "USER")
+				.antMatchers("/users/bag/wastes").hasAnyRole("ADMIN", "USER")
+				.antMatchers("/users/bag/wastes/all").hasAnyRole("ADMIN", "USER")
 				.anyRequest().authenticated().and()
 				.formLogin()// authentication method
 				.and().httpBasic() // authentication method (allow test postman POST,DELETE,PUT)

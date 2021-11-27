@@ -49,6 +49,7 @@ public class UserController {
 	 */
 	@PostMapping("/users")
 	public User postUser(@RequestBody User newUser) {
+		
 		boolean exists = userRepository.existsUserByDocumentId(newUser.getDocumentId());
 		if (exists) {
 			return null;

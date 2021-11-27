@@ -16,7 +16,7 @@ public class SMSServiceTwilio implements SMSService{
 	
     // Find your Account Sid and Token at twilio.com/console
     public static final String ACCOUNT_SID = "ACf8abe001923e8dcb181759762c2c3553";
-    public static final String AUTH_TOKEN = "f01dd560c512ea634dab608085d787b0";
+    public static final String AUTH_TOKEN = "b137f17f458edd8d7ddf5cfb5a4af7f6";
 
     @Override
     public Message sendSMS(SMS sms) {
