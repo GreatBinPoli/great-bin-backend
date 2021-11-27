@@ -21,8 +21,10 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+
 /**
- * Controlador de usuario CRUD 
+ * Controlador de usuario CRUD
+ * 
  * @author Cristian Sanchez
  *
  */
@@ -38,11 +40,13 @@ public class UserController {
 
 	public UserController() {
 	}
-    /**
-     * Insertar nuevo usuario 
-     * @param newUser
-     * @return
-     */
+
+	/**
+	 * Insertar nuevo usuario
+	 * 
+	 * @param newUser
+	 * @return
+	 */
 	@PostMapping("/users")
 	public User postUser(@RequestBody User newUser) {
 		boolean exists = userRepository.existsUserByDocumentId(newUser.getDocumentId());
@@ -53,20 +57,24 @@ public class UserController {
 			return newUser;
 		}
 	}
-    /**
-     * Insertar lista de usuarios 
-     * @param newusers
-     * @return
-     */
+
+	/**
+	 * Insertar lista de usuarios
+	 * 
+	 * @param newusers
+	 * @return
+	 */
 	@PostMapping("/userslist")
 	public String postUser(@RequestBody List<User> newusers) {
 		userRepository.saveAll(newusers);
 		return "Users successfully saved!";
 	}
-    /**
-     * Listar Usuarios 
-     * @return
-     */
+
+	/**
+	 * Listar Usuarios
+	 * 
+	 * @return
+	 */
 	@GetMapping("/users/all")
 	@ApiOperation(value = "*** Service Method Get All User ***", notes = "*** Get All User from great\\\\WebApp ***")
 	@ApiResponses(value = { @ApiResponse(code = 404, message = "*** Error Get All User!!! ***") })
@@ -74,11 +82,13 @@ public class UserController {
 	public List<User> getUsersList() {
 		return userRepository.findAll();
 	}
-    /**
-     * Listar usuario por ID 
-     * @param id
-     * @return
-     */
+
+	/**
+	 * Listar usuario por ID
+	 * 
+	 * @param id
+	 * @return
+	 */
 	@GetMapping("/users/uno/{id}")
 	@ResponseBody
 	public User getUsersById(@PathVariable("id") long id) {
@@ -89,11 +99,13 @@ public class UserController {
 			return null;
 		}
 	}
-    /**
-     * Listar usuario Por correo 
-     * @param email
-     * @return
-     */
+
+	/**
+	 * Listar usuario Por correo
+	 * 
+	 * @param email
+	 * @return
+	 */
 	@GetMapping("/users/email/{email}")
 	@ResponseBody
 	public User getUsersByEmail(@PathVariable("email") String email) {
@@ -101,12 +113,14 @@ public class UserController {
 		return userRepository.findByEmail(email);
 
 	}
-    /**
-     * editar usuario por id 
-     * @param id
-     * @param user
-     * @return
-     */
+
+	/**
+	 * editar usuario por id
+	 * 
+	 * @param id
+	 * @param user
+	 * @return
+	 */
 	@PutMapping("/users/update/{id}")
 	@ResponseBody
 	public User updateUserById(@PathVariable("id") long id, @RequestBody User user) {
@@ -130,19 +144,23 @@ public class UserController {
 			return null;
 		}
 	}
-    /**
-     * Eliminar usuario por ID
-     * @param id
-     * @return
-     */
+
+	/**
+	 * Eliminar usuario por ID
+	 * 
+	 * @param id
+	 * @return
+	 */
 	@DeleteMapping("/users/delete/{id}")
-	public String deleteUserById(@PathVariable("id") long id) {
-		boolean exists = userRepository.existsUserByDocumentId(id);
-		if (exists) {
-			userRepository.deleteByDocumentId(id);
-			return "User successfully deleted";
-		}
-		return "User with the code " + id + " not found.";
+	public User deleteUserById(@PathVariable("id") int id) {
+		User user = userRepository.findByDocumentId(id);
+		userRepository.delete(user);
+		return user;
+		/*
+		 * boolean exists = userRepository.existsUserByDocumentId(id); if (exists) {
+		 * userRepository.deleteByDocumentId(id); return exists; } return
+		 * "User with the code " + id + " not found.";
+		 */
 	}
 
 }
